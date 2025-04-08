@@ -477,11 +477,129 @@ public class Newone {
      //5
      //7
 
+ //Умовні конструкції
+ // If
+ // спочатку отримуємо дані від користувача
+//                 Scanner scan = new Scanner(System.in);
+//                 System.out.println("Enter number: " );
+//                 int user = scan.nextInt(); // user – це те що ми пишемо в консолі
+//                 char sym = 't'; // цю додатку умову можна прописати в будь-яку умовну конструкцію окрім else
+     // && пишеться, щоб зазначити, що обидні частини і та і та маються виконатись, щоб спрацював код
+//                 if (user == 5 && sym == 't') { //знаки можуть бути різні <, >, <=, >=, !=
+ // Якщо перевіряти на !=, то якщо писати в консоль будь-яке число окрім 5, то команда буде винокуватись
+//                 System.out.println("Number is 5");
+// В консоль якщо написати 5, то воно напише Number is 5, а якщо інше число, то нічого не буде
+//                 boolean isHappy = false;
+//                 if (isHappy == false);
+//                 if (!isHappy) //конкретно тут дужки можна не ставити, бо для цієї умови лише один рядок коду знизу
+ // а зверху потрібні, бо там декілька рядків коду
+ // isHappy==true можна не писати, бо воно і так true, але це начебто тільки для boolean
+ // якщо хочемо перевірити на false, то if (!isHappy)
+ // два верхніх рядка по суті означають одне і те саме, і правильніше буде писати тільки другу
+ // if (!isHappy) це умова для запуску програми, якщо цей рядок є вірним, то код всередині (те що написано нижче) виконується
 
+//                 System.out.println("Bool is false");
+//                 } else if (user ==60)
+ //<, >, <=, >=, !=. Це як додаткова умова.
+ // Також {} тут не потрібні, бо після іде тільки один рядок, а далі вже новий оператор
+ // Можна поставити {} і можна прописати ще рядки коду і вони будуть виновутись якщо умова else if вірна
+ // Таких додаткових операторів else if може бути безліч, с різними знаками, та різними числами
+//                     System.out.println("Number is 60");
+ //Консоль: 60, Number is 60
+ // Таким чином перша умова if виявилась некоректною і весь код до else if не спрацював, так само як і після (else)
+//                 else if (user ==70)
+//                 System.out.println("Number is 70");
+//                 else if (user > 100)
+//                 System.out.println("Number is > 100");
+//Консоль: 4, то жодна умова не виконалась, це не 5, не 60, не 70, не число > 100
+//                 else {
+ // код (те шо буде написано знизу) в цьому операторі else буде виконуватись, коли умова if не буде виконуватись
+ // оператор else не обов'язковий, просто не буде якогось коду, який буде показуватись, якщо не виконався один з попередніх
+//         System.out.println("Number is underfined");
+//     }
+
+ // Консоль: Enter number: 5; Number is 5; Bool is false
+ // else ігнорується, бо перша умова (if) виконалась
+ // якщо в консоль написати не 5, а 7, то умови не виконаються
+ // І код далі не піде і виконується else
+
+
+     //Switch-case
+     // Switch означає перевіряти
+     // Switch дужки не ігноруються
+     // В середині коду прописуєм різні випадки case, перевірки
+     // Суть в тому, що ми перевіряємо одну едину зміну на декілька різних значень
+     // case 5: після : буде виконуватись певний код
+     // break обов'язково пишеться в кінці,
+     // щоб програма зрозуміла де закінчується код, який підходить під цю умову
+     // В switch не можна перевіряти на <, >, <=, >=, !=
+     // Перевіряти можемо тільки на співпадіння
+     // По суті яке значення введемо в консоль так і буде вірним 50, 7, 5
+     // Default це по суті як Else в кінці, якщо вверхні умови не виконуються
+     // Після default можна не писати break. І сам по собі він не обов'язковий
+
+//                 Scanner scan = new Scanner(System.in);
+//                 System.out.println("Enter number: " );
+//                 int user = scan.nextInt();
+//                 switch (user) {
+//                     case 5:
+//                         System.out.println(" Number is 5");
+//                     break;
+//                     case 50:
+//                         System.out.println(" Number is 50");
+//                         break;
+//                     case 7:
+//                         System.out.println(" Number is 7");
+//                         break;
+//                     default:
+//                         System.out.println(" Number is underfined");
+//
+//                 }
+
+ // По суті nextLine це для String, але з charAt(0) можна вказувати символи
+ // Нажимаємо на консоль і вводимо свої числа
+
+                 Scanner scan = new Scanner(System.in);
+                 System.out.println("Enter number 1: " );
+                 int a = scan.nextInt();
+
+                 System.out.println("Enter number 2: " );
+                 int b = scan.nextInt();
+
+                 System.out.println("Enter math sum: " );
+                 scan.nextLine();
+                 char math = scan.nextLine().charAt(0);
+
+                 int res = 0;
+                 switch (math) {
+                     case '+':
+                         res = a + b;
+                         System.out.println("Res: " + res);
+                         break;
+                     case '-':
+                         res = a - b;
+                         System.out.println("Res: " + res);
+                         break;
+                     case '*':
+                         res = a * b;
+                         System.out.println("Res: " + res);
+                         break;
+                     case '/':
+                         if (b == 0)
+                         System.out.println("Error");
+                         else {
+                             res = a / b;
+                             System.out.println("Res: " + res);
+                         }
+                         break;
+                             default:
+                             System.out.println("Error");
+
+
+                 }
 
  }
     }
-
 
 
 
