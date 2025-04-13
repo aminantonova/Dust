@@ -761,13 +761,13 @@ public class Newone {
         //МЕТОДИ
         // PUBLIC
 
+        // в main
 //        Scanner miyScan = new Scanner(System.in);
 //        System.out.println("Введіть своє імʼя");
 //        String imya = miyScan.nextLine();
 //        System.out.println("Введіть своє місто");
 //        String misto = miyScan.nextLine();
 
-        //два рядки в середені методу main
 //        SkazatyPryvit(imya, misto); // сюди теж треба передати ці параметри
 //        SkazatyYakSpravy();
 //    }
@@ -783,6 +783,7 @@ public class Newone {
         // додаємо ПАРАМЕТРИ в дужках (тип параметру+назва)
 //    {
 //        System.out.println("Привіт, " + imya + " з міста " + misto);
+
         //Можна сюди перекинути SkazatyYakSpravy();
         // Тобто main викликає pryvit, а pryvit викликає YakSpravy
         // Але метод не може запустити сам себе, це небезпечно
@@ -795,8 +796,9 @@ public class Newone {
 //    }
 // Консоль: Введіть своє імʼя, Amina, Привіт, Amina, Як справи
 // при додаванні misto,
-// Консоль: Введіть своє імʼя, Amina, Введіть своє місто, Brovary, Привіт, Amina  з міста Brovary, Як справи
+// Консоль: Введіть своє імʼя, Amina, Введіть своє місто, Brovary, Привіт, Amina з міста Brovary, Як справи
 // Послідовність змінних дуже важлива imya, потім misto
+
 
         //Можна зробити простіше, без Scanner
         // Не обовʼязково передавати змінну можна передати значення
@@ -809,6 +811,7 @@ public class Newone {
 //    public static void SkazatyPryvit(String imya, String misto) {
 //        System.out.println("Привіт, " + imya + " з міста " + misto);
 //    }
+
 
         //ці 4 рядки в середені методу main
 //        String mojeImya = "Amina";
@@ -853,13 +856,13 @@ public class Newone {
 //        int chyslo = PovernuChyslo();
 //    }
 //
-    // void означає нічого не повертає
-    // створимо метод який нічого не повертає
+        // void означає нічого не повертає
+        // створимо метод який нічого не повертає
 
 //    public static void Nichogo() {
 //        System.out.println("Я не повертаю нічого");
 //    }
-    // тепер створимо метод який повертає
+        // тепер створимо метод який повертає
 
 //    public static String PovernuText(){
 //        String text = "якийсь текст";
@@ -920,16 +923,123 @@ public class Newone {
 //        myCoffee.makeCoffee(); // говориш їй зварити каву
 //
 
+//ФУНКЦІЇ
+//Функція – це підпрограма, яка містить певний код
+// І коли ми захочемо виповнити цей код, треба звернутися до неї по імені
+//Це треба коли ми постійно повторюємо якусь частину
+// Щоб ії багато разів не копіювати,
+// А просто щоб цей код зберігався в одному місці (в функції),і коли треба звертатися до неї
+// Створюється функція за межами методу, перед останньою }
+
+//        info(); // треба викликати цю функцію через main
+        //цю функцію можна викликати скільки завгодно разів
+//        info(); //і вона буде стільки разів повторюватись в консоль
+        // Консоль: Hello Hello
+//    }
+//    public static void info () { // те що написано в цих фігурних лапках це тіло функції
+        // і коли я буду викликати info, то буде виконуватись код всередині
+//        System.out.println ("Hello");
+
+        // ПЕРЕДАЧА ІНФОРМАЦІЇ
+        //Щоб при виклику функції передавати туди якусь інформацію,
+        // і щоб вона відображалася в консолі
+        // треба в public static void info в () прописати параметри
+
+//        info("Hello");
+//        info ("Hi");
+//        String words = "hi all";
+//        info (words);
+//
+//    }
+//
+//
+//    public static void info (String word) {
+//        System.out.print(word);
+//        System.out.println("!");
+//
+//    }
+
+        //в main
+//      summa (5, 7);
+//    }
+//    public static void summa (int a, int b) {
+//        int res = a+b;
+//        info (String.valueOf(res)); //res буде перетворена на текст
+        // консоль: 12!
+//        System.out.println(res);
+        //консоль: 12
+// через info можна простіше вивести певну інформацію у консоль, без sys
+//    }
+//
+//    public static void info(String word) {
+//        System.out.print(word);
+//        System.out.println("!");
+//    }
+//
+//}
 
 
+//ПОВЕРНЕННЯ ДАНИХ
+
+//        int result = summa (5, 7); //щоб записати результат цієї функції (12) в певну змінну
+        // для цього треба змінити void на int
+        // в кінці треба прописати return і вказати що ми повертаємо (res)
+//    }
+//public static int summa (int a, int b) {
+//    int res = a + b;
+//    info(String.valueOf(res));
+//    return res;
+        //Це працює так, що ми викликаємо функцію summa, передаємо туди значення summa (5, 7);
+        // Підраховуємо ці значення a + b, виводимо їх на екран String.valueOf(
+        //  І повертаємо їх назад return res;
+        //  і записуємо ці значення в змінну resultat (int result = summa)
+        // І можна наприклад це значення вивести в консоль через info або через sys
+//}
+//
+//        public static void info (String word){
+//        System.out.print(word);
+//        System.out.println("!");
+//    }
+//    }
+
+        //треба створити масиви
+        //nums1 - це масив
+//         int [] nums1 = {6, 7, 4, 7};
+        //підрахувати суму всіх цих елементів
+//        int summa1 = 0;
+        //створити цикл
+//        for (int el: nums1) {
+//            summa1 += el;
+//        }
+//        System.out.println("Summa of all elements: " + summa1);
+        // Консоль: 24
+
+        // створюємо другий масив
+//        int [] nums2 = {6, 7, 4, 7, 6};
+//        int summa2 = 0;
+//        for (int el: nums2) { // nums2 - це масив
+//            summa2 += el;
+//        }
+//        System.out.println("Summa of all elements: " + summa2);
+        // Консоль: 30
+
+
+        // можна зробити простіше через функцію, щоб не копіювати другий масив
+        // створюємо функцію
+
+        int [] nums1 = {6, 7, 4, 7};
+        summa (nums1);
+
+        int [] nums2 = {6, 7, 4, 7, 6};
+        summa (nums2);
     }
 
-}
-
-
-
-
-
-
-
-
+    public static void summa (int [] arr) { //arr - це назва, переклад масив
+        int sum = 0;
+        for (int el: arr) {
+            sum += el;
+        }
+        System.out.println("Summa of all elements: " + sum);
+        // Консоль: 24 30
+    }
+    }
