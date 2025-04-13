@@ -994,13 +994,16 @@ public class Newone {
         //  І повертаємо їх назад return res;
         //  і записуємо ці значення в змінну resultat (int result = summa)
         // І можна наприклад це значення вивести в консоль через info або через sys
-//}
 //
 //        public static void info (String word){
 //        System.out.print(word);
 //        System.out.println("!");
+// Консоль: 24!
 //    }
 //    }
+
+
+
 
         //треба створити масиви
         //nums1 - це масив
@@ -1024,22 +1027,117 @@ public class Newone {
         // Консоль: 30
 
 
+
         // можна зробити простіше через функцію, щоб не копіювати другий масив
         // створюємо функцію
 
-        int [] nums1 = {6, 7, 4, 7};
-        summa (nums1);
+//        int [] nums1 = {6, 7, 4, 7};
+//        summa (nums1);
+//
+//        int [] nums2 = {6, 7, 4, 7, 6};
+//        summa (nums2);
+//    }
+//
+//    public static void summa (int [] arr) { //arr - це назва, переклад масив
+//        int sum = 0;
+//        for (int el: arr) {
+//            sum += el;
+//        }
+//        System.out.println("Summa of all elements: " + sum);
+//        // Консоль: 24 30
 
-        int [] nums2 = {6, 7, 4, 7, 6};
-        summa (nums2);
-    }
+//        ФУНКЦІЯ БЕЗ ЗМІНИ (чиста функція)
 
-    public static void summa (int [] arr) { //arr - це назва, переклад масив
-        int sum = 0;
-        for (int el: arr) {
-            sum += el;
-        }
-        System.out.println("Summa of all elements: " + sum);
-        // Консоль: 24 30
+// нічого не змінює назовні, нічого не друкує, не має побічних ефектів
+// лише повертає результат на основі вхідних даних
+// якщо дати ті ж самі дані — завжди отримаєш той самий результат
+// просто повертає значення	return
+
+//        public class Main {
+//        //     Функція без змінної
+//            public static int f() {
+//                return 7;
+//            }
+//
+//            public static void main(String[] args) {
+//                int result = f();  // Викликаємо функцію без аргументів
+//                System.out.println("f() = " + result); // Виведе: f() = 7
+//            }
+//        }
+//        Тут:
+//        f() — метод без параметрів
+//        Завжди повертає 7, незалежно від ситуації
+
+
+//        ФУНКЦІЯ ЗІ ЗМІННОЮ (з побічним ефектом)
+
+//Це коли функція змінює щось поза собою:
+// наприклад, змінює значення змінної, друкує в консоль, записує в файл тощо.
+
+//        public class Main {
+//            // Функція зі змінною x
+//            public static int f(int x) {
+//                return 2 * x + 3;
+//            }
+//
+//            public static void main(String[] args) {
+//                int result = f(5);  // Викликаємо функцію з x = 5
+//                System.out.println("f(5) = " + result); // Виведе: f(5) = 13
+//            }
+//        }
+
+//Тут:
+// f(int x) — метод, який приймає число x
+// return 2 * x + 3; — формула, яка виконує обчислення
+
+// ФУНКЦІОНАЛЬНІ ВИРАЗИ
+
+// Приклад не знаю чи працює
+//import java.util.*;
+//
+//        public class LambdaExamples {
+//
+//            // 1. Інтерфейс без параметрів
+//            @FunctionalInterface
+//            interface Printer {
+//                void print();
+//            }
+//
+//            // 2. Інтерфейс з двома параметрами
+//            @FunctionalInterface
+//            interface Multiplier {
+//                int multiply(int a, int b);
+//            }
+//
+//            // 3. Інтерфейс з одним параметром
+//            @FunctionalInterface
+//            interface EvenChecker {
+//                boolean isEven(int x);
+//            }
+//
+//            public static void main(String[] args) {
+//
+//                // 1. Лямбда без параметрів
+//                Printer helloPrinter = () -> System.out.println("Привіт з Java!");
+//                helloPrinter.print();
+//
+//                // 2. Лямбда з двома параметрами
+//                Multiplier multiplier = (a, b) -> a * b;
+//                int result = multiplier.multiply(6, 7);
+//                System.out.println("Результат множення: " + result);
+//
+//                // 3. Лямбда з одним параметром
+//                EvenChecker checker = x -> x % 2 == 0;
+//                int number = 5;
+//                System.out.println("Число " + number + " парне? " + checker.isEven(number));
+//            }
+//        }
+//Що робить ця програма:
+//	1.	Друкує “Привіт з Java!”
+//	2.	Множить 6 на 7 і виводить результат
+//	3.	Перевіряє, чи число 5 — парне
+
+
+
     }
     }
