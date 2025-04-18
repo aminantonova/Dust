@@ -1226,10 +1226,10 @@ public class Newone {
 //        }
         // Консоль: написати не скажу, выбʼє помилку
         // Консоль: Введіть своє улюблене число: сім. Введення не є цілим числом
-        Scanner s = null; // оголошення поза try
+     // оголошення поза try
         // Throwable (control h) ієрархія наслідування помилок
+        Scanner s = new Scanner(System.in);
         try {
-            Scanner s = new Scanner(System.in);
             System.out.println(" Введіть чисельник: ");
             int c1 = s.nextInt();
             System.out.println("Введіть займенник: ");
