@@ -1,6 +1,7 @@
 package work;
 
 import java.util.Scanner;
+import java.util.*;
 
 public class Newone {
 
@@ -878,7 +879,8 @@ public class Newone {
 //public static int Suma (int a, int b) {
 //     int sumaChysel = a+b;
 //     return sumaChysel;
-//// Консоль: 17
+// можна без створення зміної, просто return a+b
+// Консоль: 17
 //
 
 
@@ -960,9 +962,9 @@ public class Newone {
 //    }
 
         //в main
-//      summa (5, 7);
+//      summa (5, 7); //виклик методу – це як використання інструкції
 //    }
-//    public static void summa (int a, int b) {
+//    public static void summa (int a, int b) { //опис методу – це як шаблон (інструкція).
 //        int res = a+b;
 //        info (String.valueOf(res)); //res буде перетворена на текст
         // консоль: 12!
@@ -975,9 +977,15 @@ public class Newone {
 //        System.out.print(word);
 //        System.out.println("!");
 //    }
-//
+// Тут параметр word отримує значення, яке йому передали
+//А передали ми: String.valueOf(res) → тобто "12"
 //}
+//Порівняй з рецептом:
+//Опис методу: Рецепт каже: “візьми a грам борошна і b грам цукру”
+//Виклик: Ти кажеш: “я беру a = 5, b = 7 грамів”
 
+//main — це вчитель, який дає учням приклад і каже: «Візьми 5 і 7, порахуй суму (summa), потім напиши результат (info)!”
+//summa — це учень, який вміє рахувати будь-які числа, які скажуть
 
 //ПОВЕРНЕННЯ ДАНИХ
 
@@ -1000,9 +1008,7 @@ public class Newone {
 //        System.out.println("!");
 // Консоль: 24!
 //    }
-//    }
-
-
+//
 
 
         //треба створити масиви
@@ -1090,54 +1096,165 @@ public class Newone {
 // f(int x) — метод, який приймає число x
 // return 2 * x + 3; — формула, яка виконує обчислення
 
-// ФУНКЦІОНАЛЬНІ ВИРАЗИ
+//Колекції
+// ArrayList
 
-// Приклад не знаю чи працює
-//import java.util.*;
-//
-//        public class LambdaExamples {
-//
-//            // 1. Інтерфейс без параметрів
-//            @FunctionalInterface
-//            interface Printer {
-//                void print();
-//            }
-//
-//            // 2. Інтерфейс з двома параметрами
-//            @FunctionalInterface
-//            interface Multiplier {
-//                int multiply(int a, int b);
-//            }
-//
-//            // 3. Інтерфейс з одним параметром
-//            @FunctionalInterface
-//            interface EvenChecker {
-//                boolean isEven(int x);
-//            }
-//
-//            public static void main(String[] args) {
-//
-//                // 1. Лямбда без параметрів
-//                Printer helloPrinter = () -> System.out.println("Привіт з Java!");
-//                helloPrinter.print();
-//
-//                // 2. Лямбда з двома параметрами
-//                Multiplier multiplier = (a, b) -> a * b;
-//                int result = multiplier.multiply(6, 7);
-//                System.out.println("Результат множення: " + result);
-//
-//                // 3. Лямбда з одним параметром
-//                EvenChecker checker = x -> x % 2 == 0;
-//                int number = 5;
-//                System.out.println("Число " + number + " парне? " + checker.isEven(number));
-//            }
+//        ArrayList<Short> nums = new ArrayList<>();
+//        nums.add((short)56); // додати новий елемент до нашої колекції
+//        short num1 = 45; // можна створити окрему якусь зміну
+//        nums.add(num1); // додати в якості елементу
+        // потім їх можна видали або замінити, в звичайному масиві таке не можна робити
+//        nums.add (1, (short)13);
+// можна в функцію передавати два значення індекс куди ми будемо встановлювати елемент і саме значення
+
+//         nums.remove(1); // щоб видалити елемент треба звернутися до індексу
+
+//         nums.set (0, (short)90); // щоб замінити значення існуючого елементу
+        // вказати індекс (напевно це рядок в консолі),вказати нове значення, зробити перетворення short
+        //  56 стає 90
+
+//   Short [] numbers = (Short[])nums.toArray(); // перетворити всю колекцію на масив > створити масив
+        // звернутися до колекції nums і до функції toArray, яка перетворює колекцію на звичайний масив
+        // помилка бо тип даних по різному написаний short Short, змінити на Short
+        //toArray повертає object, треба сконвертувати в short (Short[]) і це буде масив
+
+         // nums.clear(); // і в консолі нічого не буде
+        // nums.isEmpty (); // щоб перевірити чи є елементи в самій колекції, якщо є true і навпаки
+
+// Щоб вивести всі елементи у консоль:
+//        for (int i = 0; i < nums.size(); i++) // цикл буде йти до кількісті елементів у колекції
+// і в консолі це значення буде другим, наскільки я зрозуміла через вказаний індекс
+//System.out.println (nums.get(i));
+        // Консоль: 56,45
+
+       // або скорочена версія for
+
+//        for (short num : nums) // просто створити якусь зміну і nums (перебираємо таку колекцію)
+        // тобто в num буде записуватись всі елементи колекції
+//            System.out.println(num); // num - кожен елемент нашої колекції
+
+
+//        List<String> fruits = new ArrayList<>();
+//        fruits.add ("яблоко");
+//        fruits.add("вишня");
+//        fruits.add("арбуз");
+//        fruits.add ("яблоко");
+//        System.out.println(fruits);
+
+        // Консоль: яблоко, вишня, арбуз, яблоко
+       // - допускає повторення елементів
+       //  - зберігає порядок елементів
+
+//        Set<String> fruits = new HashSet<>();
+//        fruits.add ("яблоко");
+//        fruits.add("вишня");
+//        fruits.add("арбуз");
+//        fruits.add ("яблоко");
+//        System.out.println(fruits);
+
+        // Консоль: арбуз, яблоко, вишня
+        //- не допускає повторення елементів
+        //- не зберігає порядок елементів
+
+//        Map<String, Integer> fruits = new HashMap<>();
+        // довжина рядка це цифрове значення
+//        fruits.put ("яблоко", 6);
+//        fruits.put ("ананас", 6);
+//        fruits.put ("вишня", 5);
+//        fruits.put ("яблоко", 4);
+//        System.out.println(fruits);
+
+        // Консоль: яблоко - 4, ананас - 6, вишня - 5
+        // порядок не зберігається
+        // put - перезаписує елемент, якщо він повторюється, то спочатку перший варіант запише, потім другий
+
+        // Щоб зберегти перші значення:
+//        fruits.putIfAbsent ("яблоко", 6);
+//        fruits.putIfAbsent ("ананас", 6);
+//        fruits.putIfAbsent ("вишня", 5);
+//        fruits.putIfAbsent ("яблоко", 4);
+
+        // Консоль: яблоко - 6, ананас - 6, вишня - 5
+
+//        Map<String, Integer> fruits = new LinkedHashMap<>();
+//        fruits.put ("яблоко", 6);
+//        fruits.put ("ананас", 6);
+//        fruits.put ("вишня", 5);
+//        fruits.put ("яблоко", 4);
+//        System.out.println(fruits);
+        // Консоль: яблоко - 6, ананас - 6, вишня - 5
+        // порядок зберігається
+        // не допсукає повторення елементів
+
+//        Map<String, Integer> fruits = new TreeMap<>();
+//        fruits.put ("яблоко", 6);
+//        fruits.put ("ананас", 6);
+//        fruits.put ("вишня", 5);
+//        fruits.put ("яблоко", 4);
+//        System.out.println(fruits);
+        // Консоль: ананас - 6, вишня - 5, яблоко - 6
+
+        // Винятки
+        // ці оператори завжди використовуються разом
+
+        // спробувати
+//        try {
+//            System.out.println(" Введіть своє улюблене число: ");
+//            Scanner s = new Scanner(System.in);
+//            int iChyslo = s.nextInt();
+//            System.out.println("Ваше улблене число - " + iChyslo);
 //        }
-//Що робить ця програма:
-//	1.	Друкує “Привіт з Java!”
-//	2.	Множить 6 на 7 і виводить результат
-//	3.	Перевіряє, чи число 5 — парне
+        // зловити
+//        catch (Exception spiymanaPomylka) {
+//            System.out.println("Такого робити не можна ");
+//        }
+//        System.out.println("Программа закінчила своє виконання");
 
+        // Консоль: три - Такого робити не можна, 3 - Программа закінчила своє виконання
+//  якщо замість цифри будуть введені букви – InputMismatchException,
+//  якщо цю частину поділити на 0 або виконати якусь заборонену операцію – ArithmeticException
+//  Але якщо хочемо спіймати всі помилки, а не якийсь тип, то треба використовувати зміну класу Exception
+// Джава запише нашу помилку в зміну spiymanaPomylka
 
+//        System.out.println(" Введіть своє улюблене число: ");
+//        Scanner s = new Scanner(System.in);
+//        if (s.hasNextInt()) {
+//            int iChyslo = s.nextInt();
+//            System.out.println("Ваше улблене число - " + iChyslo);
+//        } else {
+//            System.out.println("Введення не є цілим числом");
+//        }
+        // Консоль: написати не скажу, выбʼє помилку
+        // Консоль: Введіть своє улюблене число: сім. Введення не є цілим числом
+        Scanner s = null; // оголошення поза try
+        // Throwable (control h) ієрархія наслідування помилок
+        try {
+            Scanner s = new Scanner(System.in);
+            System.out.println(" Введіть чисельник: ");
+            int c1 = s.nextInt();
+            System.out.println("Введіть займенник: ");
+            int c2 = s.nextInt();
+            System.out.println("Результат: " + c1 / c2); // ділення першого числа на друге
+        } catch (Exception pomylka){
+            System.out.println("Такого робити не можна" + pomylka.getMessage());
+            // Консоль: Введіть чисельник:5 Введіть займенник:0 Такого робити не можна/ by zero
+            //У нас тут може бути як мінімум два типи різних помилок:
+            // 1 - Користувач може ввести число яке не співпадає з типом данних який ми очікуємо
+            // 2 - Користувач може ввести друге число 0. А на нуль ділити не можна
+        } finally {
+            if (s !=null){
+                s.close(); // закриваємо ресурс
+                System.out.println("Ресурси звільнено. Scanner закрито");
+            }
+        }
+        // В finally буде виконуватись закриття потоку, звільнення ресурсів
+        // В цьому випадку Scanner вдкриває вхідний потік
+        // Який добре було б закрити у finally, щоб уникнути витоку пам'яті
+
+        // Є ще такий метод після catch PrintStackTrace - який показує у консолі помилки
+        //    public static void main() throws Scanner або s я точно не розумію
+//По суті throws просто додається в методі, і коли цей виняток (исключение) буде викидуватись/зʼявлятися
+// то в нас у консолі буде червоний текст кажучий про помилку.
 
     }
     }
