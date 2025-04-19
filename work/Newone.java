@@ -2,22 +2,39 @@ package work;
 
 import java.util.Scanner;
 import java.util.*;
+import java.util.InputMismatchException;
 
 public class Newone {
 
     // Метод для реєстрації
-    public static void registerUser(int age) throws InvalidAgeException {
-        // Метод registerUser перевіряє вік користувача.
-        // Якщо вік менше 18 — викидається наш власний виняток InvalidAgeException.
-        if (age < 18) {
-            // Перевіряємо: якщо вік менше 18...
-            throw new InvalidAgeException("Вік повинен бути не менше 18 років для реєстрації.");
-            // ...тоді викидаємо наш виняток з поясненням.
-        } else {
-            // Якщо вік 18 або більше:
-            System.out.println("Користувач успішно зареєстрований!");
-            // Виводимо повідомлення про успішну реєстрацію.
-        }
+//    public static void registerUser(int age) throws InvalidAgeException {
+    // Метод registerUser перевіряє вік користувача.
+    // Якщо вік менше 18 — викидається наш власний виняток InvalidAgeException.
+//        if (age < 18) {
+    // Перевіряємо: якщо вік менше 18...
+//            throw new InvalidAgeException("Вік повинен бути не менше 18 років для реєстрації.");
+    // ...тоді викидаємо наш виняток з поясненням.
+//        } else {
+    // Якщо вік 18 або більше:
+//            System.out.println("Користувач успішно зареєстрований!");
+    // Виводимо повідомлення про успішну реєстрацію.
+//        }
+//    }
+
+    // Метод для ArithmeticException
+    public static void causeArithmeticException() {
+        int a = 10; // створює змінну a зі значенням 10.
+        int b = 0; // створює змінну b зі значенням 0.
+        int result = a / b; // виконується ділення на 0, тому виникає ArithmeticException.
+        System.out.println("Результат: " + result);
+        //якщо б помилка не виникла, цей рядок вивів би результат.
+    }
+
+    // Метод для NullPointerException
+    private static void causeNullPointerException() {
+        String text = null; //створює змінну text, яка не містить жодного тексту (посилання на null).
+        System.out.println("Довжина рядка: " + text.length());
+        // спроба дістати довжину у null, що викликає NullPointerException.
     }
 
     public static void main(String[] args) {
@@ -1316,6 +1333,7 @@ public class Newone {
 //            System.out.println("Інша помилка: " + pomylka.getMessage());
 //        } finally {
 //                s.close();
+// Закриваємо Scanner, звільняючи ресурс
 //                System.out.println("Ресурси звільнено.");
         // Консоль:Введіть чисельник:10 Введіть займенник:0
         // Користувацька помилка: Ділення на нуль неможливе! Ресурси звільнено.
@@ -1342,42 +1360,167 @@ public class Newone {
 
         // Метод для реєстрації
 //        public static void registerUser(int age) throws InvalidAgeException {
-            // Метод registerUser перевіряє вік користувача.
-            // Якщо вік менше 18 — викидається наш власний виняток InvalidAgeException.
+        // Метод registerUser перевіряє вік користувача.
+        // Якщо вік менше 18 — викидається наш власний виняток InvalidAgeException.
 //            if (age < 18) {
-                // Перевіряємо: якщо вік менше 18...
+        // Перевіряємо: якщо вік менше 18...
 //                throw new InvalidAgeException("Вік повинен бути не менше 18 років для реєстрації.");
-                // ...тоді викидаємо наш виняток з поясненням.
+        // ...тоді викидаємо наш виняток з поясненням.
 //            } else {
-                // Якщо вік 18 або більше:
+        // Якщо вік 18 або більше:
 //                System.out.println("Користувач успішно зареєстрований!");
-                // Виводимо повідомлення про успішну реєстрацію.
+        // Виводимо повідомлення про успішну реєстрацію.
 
+
+//        Scanner s = new Scanner(System.in);
+
+//        try { // Блок try — тут знаходиться код, який може викликати вийнятки
+//            System.out.println(" Введіть ваш вік: ");// Виводимо запрошення до введення віку
+//            int age = s.nextInt(); // Зчитуємо введене число та зберігаємо його у змінну age
+//            registerUser(age);
+        // Викликаємо метод перевірки віку і передаємо йому вік
+        // Якщо вік < 18 — буде викинуто виняток
+//        } catch (InvalidAgeException vik) {
+//          Обробка винятку, якщо вік менше 18
+//            System.out.println("Помилка реєстрації: " + vik.getMessage());
+        // Виводимо повідомлення з винятку
+//        } catch (Exception vik) {
+        // Універсальний catch ловить всі інші помилки (наприклад, якщо ввели не число)
+//            System.out.println("Інша помилка: " + vik.getMessage());
+        // Виводимо загальне повідомлення про помилку
+//        } finally {
+        // Блок finally виконується завжди — навіть якщо була помилка
+//            s.close();
+//             Закриваємо Scanner, звільняючи ресурс
+//            System.out.println("Ресурси звільнено.");
+//        }
+        // Консоль: Введіть ваш вік:17 Помилка реєстрації:
+        // Вік повинен бути не менше 18 років для реєстрації. Ресурси звільнено.
+        // Введіть ваш вік:20 Користувач успішно зареєстрований! Ресурси звільнено.
+
+
+// Обробка кількох винятків. Використання множинних catch блоків.
+
+//  Cтворювати окремий клас не обов’язково, бо:
+//	ArithmeticException, NullPointerException, InputMismatchException це вбудовані винятки в Java
+//	Вони вже створені й доступні у пакеті java.util — ти просто обробляєш їх у catch
+//InvalidAgeException – мій власний виняток, його треба створювати
+//Важливо: Єдине, що потрібно — це правильно імпортувати,
+// наприклад: import java.util.InputMismatchException; І тоді просто зловити його
+
+// створили інший клас
+//package work;
+//
+//public class InvalidAgeException extends Exception {
+//    // Створюємо власний клас-виняток, який наслідує Exception
+//
+//    public InvalidAgeException (String message) {
+//        // Конструктор приймає повідомлення про помилку
+//        super (message);
+//        // Передаємо це повідомлення до конструктора батьківського класу (Exception),
+//        // щоб пізніше його можна було отримати через getMessage()
+//    }
+//}
+
+// В основному класі:
+// перед методом ми створили інший метод
+
+        // Метод для реєстрації
+//        public static void registerUser(int age) throws InvalidAgeException {
+        // Метод registerUser перевіряє вік користувача.
+        // Якщо вік менше 18 — викидається наш власний виняток InvalidAgeException.
+//            if (age < 18) {
+        // Перевіряємо: якщо вік менше 18...
+//                throw new InvalidAgeException("Вік повинен бути не менше 18 років для реєстрації.");
+        // ...тоді викидаємо наш виняток з поясненням.
+//            } else {
+        // Якщо вік 18 або більше:
+//                System.out.println("Користувач успішно зареєстрований!");
+        // Виводимо повідомлення про успішну реєстрацію.
+
+
+//        Scanner s = new Scanner(System.in);
+
+//        try { // Блок try — тут знаходиться код, який може викликати вийнятки
+//        System.out.println(" Введіть ваш вік: ");// Виводимо запрошення до введення віку
+//        int age = s.nextInt(); // Зчитуємо введене число та зберігаємо його у змінну age
+//            registerUser(age);
+        // Викликаємо метод перевірки віку і передаємо йому вік
+        // Якщо вік < 18 — буде викинуто виняток
+//        } catch (InvalidAgeException vik) {
+//          Обробка винятку, якщо вік менше 18
+//            System.out.println("Помилка реєстрації: " + vik.getMessage());
+        // Виводимо повідомлення з винятку
+//        } catch (InputMismatchException vik) {
+//        Обробка ситуації, коли замість числа ввели наприклад текст
+//        System.out.println("Помилка вводу: Введіть ціле число!" );
+        // Повідомляємо користувача про неправильний формат вводу
+//        } catch (Exception vik) {
+// Універсальний catch ловить всі інші помилки (наприклад, якщо ввели не число)
+//            System.out.println("Інша помилка: " + vik.getMessage());
+        // Виводимо загальне повідомлення про помилку
+//        } finally {
+        // Блок finally виконується завжди — навіть якщо була помилка
+//            s.close();
+// Закриваємо Scanner, звільняючи ресурс
+//            System.out.println("Ресурси звільнено.");
+//        }
+// Консоль: Введіть ваш вік: 25 Користувач успішно зареєстрований! Ресурси звільнено.
+// Це означає, що: Вік пройшов перевірку, Виняток не викидався, Програма працює правильно
+
+//Введіть ваш вік:15 Помилка реєстрації:Вік повинен бути не менше 18 років для реєстрації.Ресурси звільнено.
+// Тобто:Спрацював власний виняток InvalidAgeException, Програма правильно його перехопила і все працює
+
+// Введіть ваш вік: abc Помилка вводу: Введіть ціле число! Ресурси звільнено.
+//Це означає, що: Виникла помилка типу InputMismatchException,
+// Програма зловила її у відповідному catch, Це також правильна поведінка
+
+
+// Обробка кількох винятків.
+// Практичне завдання: написати метод для обробки ArithmeticException і NullPointerException.
+// До методу main створити два методи
+
+        // Метод для ArithmeticException
+//        public static void causeArithmeticException() {
+//            int a = 10; // створює змінну a зі значенням 10.
+//            int b = 0; // створює змінну b зі значенням 0.
+//            int result = a / b; // виконується ділення на 0, тому виникає ArithmeticException.
+//            System.out.println("Результат: " + result);
+        //якщо б помилка не виникла, цей рядок вивів би результат.
+//    }
+
+// Метод для NullPointerException
+//        private static void causeNullPointerException () {
+//            String text = null; //створює змінну text, яка не містить жодного тексту (посилання на null).
+//            System.out.println("Довжина рядка: " + text.length());
+        // спроба дістати довжину у null, що викликає NullPointerException.
+//        }
 
         Scanner s = new Scanner(System.in);
-
-        try { // Блок try — тут виконуємо потенційно "небезпечні" дії
-            System.out.println(" Введіть ваш вік: ");// Виводимо запрошення до введення віку
-            int age = s.nextInt(); // Зчитуємо введене число та зберігаємо його у змінну age
-            registerUser(age);
-            // Викликаємо метод registerUser і передаємо йому вік
-            // Якщо вік < 18 — буде викинуто виняток
-        } catch (InvalidAgeException vik) {
-            // Якщо метод викинув наш власний виняток — переходимо сюди
-            System.out.println("Помилка реєстрації: " + vik.getMessage());
-            // Виводимо повідомлення з винятку
+        try { // Блок try — тут знаходиться код, який може викликати вийнятки
+            // Викликаємо метод, що спричиняє ArithmeticException
+            causeArithmeticException();
+            // Викликаємо метод, що спричиняє NullPointerException
+            causeNullPointerException();
+        } catch (ArithmeticException vik) { //Цей catch спіймає помилку ділення на 0.
+            System.out.println("Арифметична помилка: " + vik.getMessage());
+            // vik.getMessage() — повертає текст помилки (наприклад, / by zero).
+        } catch (NullPointerException vik) {
+            //	Цей блок ловить винятки, пов’язані з доступом до null-посилання.
+            System.out.println("Помилка null: " + vik.getMessage());
         } catch (Exception vik) {
-            // Обробка інших помилок (наприклад, якщо ввели не число)
+// Універсальний catch ловить всі інші помилки (наприклад, якщо ввели не число)
             System.out.println("Інша помилка: " + vik.getMessage());
             // Виводимо загальне повідомлення про помилку
         } finally {
             // Блок finally виконується завжди — навіть якщо була помилка
             s.close();
+// Закриваємо Scanner, звільняючи ресурс
             System.out.println("Ресурси звільнено.");
         }
-        // Консоль: Введіть ваш вік:17 Помилка реєстрації:
-        // Вік повинен бути не менше 18 років для реєстрації. Ресурси звільнено.
-
-        // Введіть ваш вік:20 Користувач успішно зареєстрований! Ресурси звільнено.
+// Консоль:causeArithmeticException Арифметична помилка: / by zero. Ресурси звільнено.
+// Консоль: causeNullPointerException Помилка null: Cannot invoke "String.length()" because "text" is null
+//Ресурси звільнено.
+// Але треба закоментувати causeArithmeticException при його виклику
     }
 }
