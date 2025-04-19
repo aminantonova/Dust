@@ -1283,6 +1283,18 @@ public class Newone {
 
         // Створення класів, які наслідують Exception.
 
+// створити окремий клас
+//package work;
+//
+//public class MyCustomException extends Exception{
+//    // Це наш власний тип помилки, що наслідує вбудований Exception
+//public MyCustomException (String message) {
+//    // Конструктор, який приймає повідомлення про помилку
+//        super (message); //Викликає конструктор батьківського класу Exception
+//    }
+//}
+        // В основному:
+
 //        Scanner s = new Scanner(System.in);
 //
 //        try {
@@ -1309,8 +1321,23 @@ public class Newone {
         // Користувацька помилка: Ділення на нуль неможливе! Ресурси звільнено.
         // }
 
-        //Практичне завдання: створити виняток InvalidAgeException і використати його в методі registerUser()."
+//Практичне завдання: створити виняток InvalidAgeException і використати його в методі registerUser()."
 
+// створили інший клас
+//package work;
+//
+//public class InvalidAgeException extends Exception {
+//    // Створюємо власний клас-виняток, який наслідує Exception
+//
+//    public InvalidAgeException (String message) {
+//        // Конструктор приймає повідомлення про помилку
+//        super (message);
+//        // Передаємо це повідомлення до конструктора батьківського класу (Exception),
+//        // щоб пізніше його можна було отримати через getMessage()
+//    }
+//}
+
+// В основному класі:
 // перед методом ми створили інший метод
 
         // Метод для реєстрації
