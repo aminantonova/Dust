@@ -1,44 +1,32 @@
 package UI_Tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-abstract public class BaseTest {
+public class BaseTest {
+    protected static final String Base_URL = "https://www.toolsqa.com/selenium-training/";
+    protected WebDriver driver;
     //створимо базовий клас з тестами
-    //всього три методи: ініціалізація selenide
-
-    public void setUp(){ //метод для налаштування, ініціалізацію браузера та його встановлення.
-// спочатку треба встановити chrome driver, для цього в нас вже є залежність webdrivermanager
-
-        WebDriverManager.chromedriver().setup();
-        //скачали chrome driver, автоматично вкажемо шлях та зробимо основні налаштування
-        Configuration.browser = "chrome"; // вказали конфігурацію браузера
-        // обрати саме com.codeborne.selenide
-        Configuration.browserSize = "1440х900";
-        // розмір вікна нашого браузера, відповідає за розмір вікна буде відкрите при виконувані тесту
-        Configuration.headless = false; //створює віртуальний екран де запускає chrome
-        //чи будемо бачити сам браузер при виконувані тесту
-        // в середині цього віртуального простору виконується вся тестова логіка
-        // якщо ми хочемо своїми очима бачити що відбувається ставимо true, якщо ні – false
-    }
-
-    //метод який викликаємо до початку тесту
-    // треба поставити анотацію – @
 
     @Before
-    public void init() {
-        setUp(); // перед кожним запуском тестів буде виконуватись ініціалізація web driver
+    public void setUp() { //метод для налаштування, ініціалізацію браузера та його встановлення.
+        // спочатку треба встановити chrome driver, для цього в нас вже є залежність webdrivermanager
+
+        WebDriverManager.chromedriver().setup(); //скачали chrome driver
+        driver = new ChromeDriver(); //створюємо новий екземпляр, використовуючи driver підготовлений в минулому рядку
+        driver.manage().window().maximize();
+        driver.get(Base_URL);
     }
 
-    //те що відбувається після
     @After
     public void tearDown() { //закрити браузер
-        Selenide.closeWebDriver();
-    //основний тестовий клас готовий
-    //основа для всіх тестових класів
-    // кожен раз будемо від цього класу наслідуватись
+        if (driver != null) {
+            driver.quit();
+        }
+        //основа для всіх тестових класів
+        // кожен раз будемо від цього класу наслідуватись
     }
 }

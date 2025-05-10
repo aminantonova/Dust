@@ -1,46 +1,58 @@
 package UI_Tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class UITest extends BaseTest {
-    // клас для виконування логіки перевірки: вказання якихось змінних та порівняння чогось
-    // наслідує BaseTest
-    // логіка взаємодії з елементами відбувається в Page class (класи зі сторінками)
-    // треба вирішити які page класи треба створити
-    // патерн page object – кожну сторінку розбиваємо на класи, щоб було зручніше
-    // нам треба зробити всього два класи: основної сторінки та с результатами пошуку
-    // Для page class завжди робити назву з закінчення page, щоб у великому проєкті було легше знайти
 
-
-    // треба позначити що саме ми винесемо в окремі змінні, як константи – незмінні змінні
-    // бо будь-яка інформація яка кудись вбивається, десь використовується її бажано виносити в змінні,
-    // щоб потім її було легко знайти та змінити
-
-    // треба винеси ссилку на наш сайт
-
-    private final static String Base_URL = "https://www.toolsqa.com/selenium-training/";
-    //ми позначили константу, щоб нею користуватись
-    //private – досупна тільки в цьому класі
-    //final – не можемо перевизначити цю зміну
-    //static – зміна ініціалізується до ініціалізації класу, тобто завжди є
     private final static String SearchString = "Automated Mobile Testing in testRigor";
-    // винести те що будемо шукати в пошуку
     private final static String Open_URL = "https://www.toolsqa.com/testrigor/automated-mobile-testing-in-testrigor";
+    private final static String Demo_URL = "https://demoqa.com/";
+    private final static String Elements_URL = "https://demoqa.com/elements";
 
     @Test
-    public void checkHref() { //Href – це атрибут HTML для вказання посилання на URL адресу
-    // якщо так запустити, то нічого не буде бо в нас пусте тіло
-    // але виконається метод setUp в BaseTest(встановиться chromedriver та відбудуться якісь налаштування)
-    // ми ніяк з цим не працюємо, воно просто викликається
+    public void checkHref() {
 
-    // щоб викликати метод з MainPage треба створити екземпляр цього класу
-    MainPage mainPage = new MainPage();
-    mainPage.openWebSite(Base_URL);
-//так як у нас є екземпляр MainPage, то можемо і інший метод звідти визвати
-    mainPage.Search(SearchString);
+        MainPage mainPage = new MainPage(driver); //Ініціалізуємо MainPage, щоб використовувати його методи
 
-    SearchPage SearchPage = new SearchPage();
-    SearchPage.Title(Open_URL);
-//        Assert.assertTrue(href.conatins("automated-mobile"));
+        //Створюємо об'єкт класу MainPage. driver – це екземпляр WebDriver, який дозволяє керувати браузером.
+        // Він використовується для взаємодії з веб-сторінкою: відкривати URL-адресу, натискати на кнопки, вводити текст у поля і т.д.
+        // Таким чином, "отримуємо доступ" до дій, які можна виконати на головній сторінці, які виконує driver.
+
+        mainPage.openWebSite(Base_URL); // Відкриваємо сайт
+        // Викликаємо метод openWebSite() об'єкта mainPage і передаєм URL із змінної Base_URL, щоб відкрити сайт.
+
+        Assert.assertEquals("URL не співпадає", Base_URL, driver.getCurrentUrl());
+        // Перевіряємо, чи відкрився правильний сайт: порівнюємо очікуваний URL із фактичним
+
+        mainPage.SearchInPut(SearchString); // виконуєм пошук на сайта
+
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.clickOnFirstArticle(Open_URL);
+
+        Assert.assertEquals("Невірний URL статті", Open_URL, driver.getCurrentUrl());
+
+        OpenPage openPage = new OpenPage(driver);
+        openPage.openDemoSite(Demo_URL);
+
+        Assert.assertEquals("Demo Site URL не співпадає", Demo_URL, driver.getCurrentUrl());
+
+//Assert.assertEquals(...) – метод, який порівнює два значення ( очікуване та фактичне).
+//Якщо вони не співпадають тест впаде з помилкою та покаже повідовлення у «».
+//
+//Пример вывода в консоль:
+//makefile
+//КопироватьРедактировать
+//java.lang.AssertionError: Demo Site URL не совпадает
+//Expected: https://demoqa.com/
+//Actual: https://toolsqa.com/incorrect-url
+//
+//Demo_URL – це моя зміна в яку я завчасно записала очікуваний URL
+//driver.getCurrentUrl() – це реальний URL на який браузер попав в момент виконування тесту, чи дійсно ми опинились на потрібній сторінці.
+
+        ElementsPage elementsPage = new ElementsPage(driver);
+        elementsPage.Elements(Elements_URL);
     }
 }

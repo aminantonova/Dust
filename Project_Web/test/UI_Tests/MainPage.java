@@ -1,37 +1,32 @@
-/**
- * Головна сторінка сайту demoqa.com
- */
 package UI_Tests;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-
-import static com.codeborne.selenide.Selenide.$x;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class MainPage {
-    //створити веб елемент до якого будемо звертатися
-private final SelenideElement textboxInput = $x("//input [@class= 'navbar__search--input']");
-    // кнопка (форма) пошуку, вибрати import static method
-    // тип елементу – SelenideElement, назва – searchButton, локатор – //input [@class= 'navbar__search--input']
-    // к цим елементам ми не можемо звертатись в самому класі – searchButton
-    // щоб взаємодіяти з елементами треба створити метод і в ньому щось робити
+    private final WebDriver driver; //це оголошення змінної, яка зберігатиме об'єкт браузера WebDriver.
 
-    /**
-     *Виконується пошук на сайті серед статей і натискається кнопка enter
-     * @param searchString пошукова строка
-     */
-    public void Search(String searchString) {
-// тепер можемо визвати textboxInput і будуть доступні до нього різні методи
-    textboxInput.setValue(searchString); //встановлюємо значення
-    textboxInput.sendKeys(Keys.ENTER); //вводимо в поле те що треба
-//click – нажать, sendkeys – вписати текст, setValue – встановити значення, isDisplayed – видим он или нет
-}
-// створити метод який відкриє ссилку
-public void openWebSite(String url) { // в аргументі () ми передамо нашу силку (тип данних і назву)
-Selenide.open(url);
-// після того як ми викличемо метод openWebSite і вкажемо ссилку в аргументі, то відкриється браузер і сторінка
+    // Конструктор, принимающий WebDriver
+    public MainPage(WebDriver driver) {
+    //це конструктор, який ініціалізує цю змінну, передаючи об'єкт браузера під час створення об'єкта MainPage.
+        this.driver = driver; //ініціалізація змінної класу значенням, переданим конструктор.
+    }
 
-}
+    // Метод для поиска по сайту
+    public void SearchInPut(String searchString) {
+        WebElement textboxInput = driver.findElement(By.xpath("//input[@class='navbar__search--input']"));
+        //input [contains(@class, 'navbar')] [not(contains(@class, 'w-100'))]
+        textboxInput.sendKeys(searchString); // Вводим текст в поле поиска
+        textboxInput.sendKeys(Keys.ENTER); // Нажимаем Enter
+        //sendKeys — це метод, який використовується для введення тексту.
+        //По типу: textboxInput.sendKeys("Hello World");
+        //Keys.ENTER — це спеціальна клавіша, яка імітує натискання клавіші Enter.
+    }
 
+    // Метод для открытия сайта
+    public void openWebSite(String url) {
+        driver.get(url); //відкриваємо сайт
+    }
 }
