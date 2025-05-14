@@ -6,13 +6,13 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class BaseTest {
+public class BaseTest1 {
     protected static final String Base_URL = "https://www.toolsqa.com/selenium-training/";
     protected WebDriver driver;
     //створимо базовий клас з тестами
 
     @Before
-    public void setUp() { //метод для налаштування, ініціалізацію браузера та його встановлення.
+    public void setUp() { //метод для налаштування, ініціалізації браузера та його встановлення.
         // спочатку треба встановити chrome driver, для цього в нас вже є залежність webdrivermanager
 
         WebDriverManager.chromedriver().setup(); //скачали chrome driver

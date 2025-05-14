@@ -19,9 +19,5 @@ public class OpenPage {
         for (String windowHandle : driver.getWindowHandles()) {
             driver.switchTo().window(windowHandle);
         }
-
-//        String currentUrl = driver.getCurrentUrl();
-//        if (!currentUrl.equals(expectedUrl)) {
-//            throw new AssertionError("Expected URL: " + expectedUrl + " but got: " + currentUrl);
         }
     }
