@@ -24,6 +24,7 @@ public class ElementsPage {
     }
 
     public void clickTextBox(String expectedUrl) {
+
         driver.findElement(By.xpath("//span[text()= 'Text Box']")).click();
     }
 

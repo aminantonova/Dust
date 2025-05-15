@@ -5,11 +5,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class MainPage {
+public class MainPage1 {
     private final WebDriver driver; //це оголошення змінної, яка зберігатиме об'єкт браузера WebDriver.
 
     // Конструктор, принимающий WebDriver
-    public MainPage(WebDriver driver) {
+    public MainPage1(WebDriver driver) {
     //це конструктор, який ініціалізує цю змінну, передаючи об'єкт браузера під час створення об'єкта MainPage.
         this.driver = driver; //ініціалізація змінної класу значенням, переданим конструктор.
     }

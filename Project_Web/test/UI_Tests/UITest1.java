@@ -24,7 +24,7 @@ public class UITest1 extends BaseTest1 {
     @Test
     public void checkHref() {
 
-        MainPage mainPage = new MainPage(driver); //Ініціалізуємо MainPage, щоб використовувати його методи
+        MainPage1 mainPage = new MainPage1(driver); //Ініціалізуємо MainPage, щоб використовувати його методи
 
         //Створюємо об'єкт класу MainPage. driver – це екземпляр WebDriver, який дозволяє керувати браузером.
         // Він використовується для взаємодії з веб-сторінкою: відкривати URL-адресу, натискати на кнопки, вводити текст у поля і т.д.
