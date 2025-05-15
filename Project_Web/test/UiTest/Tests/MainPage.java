@@ -81,6 +81,10 @@ public class MainPage extends BasePage {
         Register.click();
         return this; //повертаємо сторінку, бо з нею ще працюємо
     }
+    public boolean isRedirectedToLogin() {
+        return Login.isDisplayed(); // или другой элемент на странице логина
+    }
+
 }
 
 
