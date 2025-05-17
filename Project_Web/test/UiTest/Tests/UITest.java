@@ -16,14 +16,14 @@ public class UITest extends BaseTest {
 
         MainPage mainPage = new MainPage(); // створюємо екземпляр класу MainPage
         //Ініціалізуємо MainPage, щоб використовувати його методи
-        mainPage.createRegister(FirstName, LastName, UserName, Password);
+        mainPage.Register(FirstName, LastName, UserName, Password);
         //звертаємось до цього екземпляру та викликаємо метод з цього класу
 
         LoginPage loginPage = new LoginPage();
         loginPage.createLogin(UserName,Password);
 
-        Assert.assertTrue("Логин не удался", loginPage.isLoginSuccessful());
-        Assert.assertTrue("Регистрация не перенаправила на логин", mainPage.isRedirectedToLogin());
+        Assert.assertTrue(loginPage.isLoginSuccessful());
+        Assert.assertTrue(mainPage.isRedirectedToLogin());
 
 
     }

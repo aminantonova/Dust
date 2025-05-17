@@ -27,10 +27,10 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage createLogin(String login, String password) {
-        Login.click();
-        LoginUserName.sendKeys(login);
-        LoginPassword.sendKeys(password);
-        LoginButton.click();
+        click(Login);
+        type(LoginUserName, login);
+        type(LoginPassword, password);
+        click(LoginButton);
         return this;
 
         }

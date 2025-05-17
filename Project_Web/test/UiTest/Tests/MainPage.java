@@ -19,9 +19,14 @@ public class MainPage extends BasePage {
 
     @FindBy(xpath = "//span [text()='Login']")
     private WebElement Login;
+    //"//li[@class='btn btn-light active']//span"
 
-    @FindBy (xpath = "//button[@id='newUser']")
+    @FindBy (xpath = "//div [@class= 'text-right button']//button [text()='New User']")
     private WebElement NewUser;
+
+//"//div[@class='mt-2 buttonWrap row']//button [text()='New User']"
+//"//button[@id='newUser']"
+//"//button [text()='New User']"
 
     //анотація Find
     @FindBy(xpath = "//input [@id='firstname']") //можно id та css
@@ -38,7 +43,7 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//input[@id='password']")
     private WebElement Password;
 
-    @FindBy(xpath = "//div[@class='recaptcha-checkbox-border']")
+    @FindBy(xpath = "//div[contains(@class,'border')]//ancestor::span")
     private WebElement Robot;
     //div[contains(@class, 'border')]//ancestor::span
     //div[@class= 'recaptcha-checkbox-border']
@@ -55,21 +60,27 @@ public class MainPage extends BasePage {
         //модифікатор доступу цієї змінної protected який доступний в класах наследниках
     }
 
-    public MainPage createRegister(String first, String last, String user, String pass) {
+    public MainPage Register(String first, String last, String user, String pass) {
         // метод який заповнить поля які ми зазначили
         // ці поля ми будемо передавати через тестовий клас
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", BookStore);
-        //принудительное прокручивание к нужному элементу, так как его перекрывает реклама
-        BookStore.click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Login);
-        Login.click();
+        ScrollAndClick(BookStore);
+//        click(BookStore);
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", BookStore);
+//        //принудительное прокручивание к нужному элементу, так как его перекрывает реклама
+//        BookStore.click();
 
-        NewUser.click();
-        FirstName.sendKeys(first);
-        LastName.sendKeys(last);
-        UserName.sendKeys(user);
-        Password.sendKeys(pass);
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Login);
+
+//        WebElement Login = findByXpath("//span [text()='Login']");
+
+//        ScrollAndClick(Login);
+        safeClick(Login);
+        safeClick(NewUser);
+        type(FirstName, first);
+        type(LastName, last);
+        type(UserName, user);
+        type(Password, pass);
 
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -77,8 +88,9 @@ public class MainPage extends BasePage {
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Robot);
 
-        Robot.click();
-        Register.click();
+        click(Robot);
+
+        click(Register);
         return this; //повертаємо сторінку, бо з нею ще працюємо
     }
     public boolean isRedirectedToLogin() {
