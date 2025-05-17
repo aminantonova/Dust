@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class ElementsPage {
+public class ElementsPage1 {
     private final WebDriver driver;
 
-    public ElementsPage(WebDriver driver) {
+    public ElementsPage1(WebDriver driver) {
         this.driver = driver;
     }
 

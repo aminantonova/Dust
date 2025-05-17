@@ -61,7 +61,7 @@ public class UITest1 extends BaseTest1 {
 //Demo_URL – це моя зміна в яку я завчасно записала очікуваний URL
 //driver.getCurrentUrl() – це реальний URL на який браузер попав в момент виконування тесту, чи дійсно ми опинились на потрібній сторінці.
 
-        ElementsPage elementsPage = new ElementsPage(driver);
+        ElementsPage1 elementsPage = new ElementsPage1(driver);
 
         elementsPage.Elements(Elements_URL);
         Assert.assertEquals("Elements URL не співпадає", Elements_URL, driver.getCurrentUrl());

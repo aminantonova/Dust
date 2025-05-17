@@ -22,6 +22,9 @@ public class LoginPage extends BasePage {
     @FindBy(id = "userName-value")
     private WebElement LoggedInUserName;
 
+   @FindBy(xpath ="//button [text()='Log out']")
+   private WebElement LogOut;
+
     public LoginPage() {
         PageFactory.initElements(driver, this);
     }
@@ -31,6 +34,8 @@ public class LoginPage extends BasePage {
         type(LoginUserName, login);
         type(LoginPassword, password);
         click(LoginButton);
+        click(LogOut);
+
         return this;
 
         }

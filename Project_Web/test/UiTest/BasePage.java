@@ -20,7 +20,7 @@ public class BasePage {
 }
     // Конструктор: инициализация WebDriverWait с универсальным таймаутом
     public BasePage() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     // Универсальный метод клика с ожиданием кликабельности
@@ -33,16 +33,6 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element)).sendKeys(text);
     }
 
-    // Проверка видимости элемента
-    public boolean isVisible(WebElement element) {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(element));
-            return element.isDisplayed();
-        } catch (TimeoutException e) {
-            return false;
-        }
-
-    }
     //Принудительная прокрутка страницы к нужному элементу.
     public void scroll(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -56,6 +46,47 @@ public class BasePage {
 
     }
 
+    // Безопасный клик с обработкой исключений (если элемент перекрыт)
+    public void safeClick(WebElement element) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+        } catch (ElementClickInterceptedException e) {
+            // Если элемент перекрыт, можно попробовать кликнуть через JavaScript
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
+    }
+
+    // Метод для безпечної перевірки наявності CAPTCHA (reCAPTCHA)
+    public void checkCaptcha(String xpath) {
+        try {
+            // Створюємо об'єкт WebDriverWait, який чекатиме до 10 секунд на появу CAPTCHA
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            // Очікуємо, поки CAPTCHA стане видимою на сторінці (знаходимо її за XPath)
+
+            WebElement captcha = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+
+            // Перевіряємо, чи дійсно CAPTCHA відображена (видима користувачу)
+            if (captcha.isDisplayed()) {
+                // Якщо CAPTCHA видно — виводимо повідомлення в консоль і не взаємодіємо з нею
+                System.out.println("CAPTCHA відображена, пропускаємо взаємодію.");
+            }
+        } catch (Exception e) {
+            // Якщо CAPTCHA не з'явилась або не знайдена — просто виводимо повідомлення
+            System.out.println("CAPTCHA не знайдена або не відображена.");
+        }
+    }
+
+    // Проверка видимости элемента
+    public boolean isVisible(WebElement element) {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            return element.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+
+    }
     // Поиск элемента по XPath с ожиданием
     public WebElement findByXpath(String xpath) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
@@ -70,17 +101,5 @@ public class BasePage {
     public String getText(WebElement element) {
         return wait.until(ExpectedConditions.visibilityOf(element)).getText();
     }
-
-    // Безопасный клик с обработкой исключений (если элемент перекрыт)
-    public void safeClick(WebElement element) {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-            element.click();
-        } catch (ElementClickInterceptedException e) {
-            // Если элемент перекрыт, можно попробовать кликнуть через JavaScript
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-        }
-    }
-
 }
 

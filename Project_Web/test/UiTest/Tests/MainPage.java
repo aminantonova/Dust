@@ -60,11 +60,16 @@ public class MainPage extends BasePage {
         //модифікатор доступу цієї змінної protected який доступний в класах наследниках
     }
 
+    // Метод ожидания загрузки страницы
+    public void waitForPageToLoad() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.visibilityOf(BookStore));
+    }
     public MainPage Register(String first, String last, String user, String pass) {
         // метод який заповнить поля які ми зазначили
         // ці поля ми будемо передавати через тестовий клас
 
-        ScrollAndClick(BookStore);
+        safeClick(BookStore);
 //        click(BookStore);
 //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", BookStore);
 //        //принудительное прокручивание к нужному элементу, так как его перекрывает реклама
@@ -81,16 +86,9 @@ public class MainPage extends BasePage {
         type(LastName, last);
         type(UserName, user);
         type(Password, pass);
+        checkCaptcha("//div[@class='recaptcha-checkbox-border']");
+        ScrollAndClick(Register);
 
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement clickRobot = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='recaptcha-checkbox-border']")));
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Robot);
-
-        click(Robot);
-
-        click(Register);
         return this; //повертаємо сторінку, бо з нею ще працюємо
     }
     public boolean isRedirectedToLogin() {
