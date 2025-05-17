@@ -23,7 +23,7 @@ public class BaseTest {
         driver = new ChromeDriver(); // ініціалізували зміну driver та присвоїли відповідний тип – chromedriver
         //два налаштування: завантаження сторінки та таймаут для взаємодії з елементами
         driver.manage().window().maximize();
-        driver. manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS); 
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         //timeout – метод який дозволяє вписувати очікування
         //pageLoadTimeout – дозволяє очікувати завантаження сторінки до якогось моменту
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -31,13 +31,12 @@ public class BaseTest {
         BasePage.setDriver(driver); //визиваємо метод setDriver з Base Page, аргумент protected WebDriver driver
 
     }
+
     @After
             public void tearDown () {
         driver.close(); //закриваємо driver
         driver.quit(); //закриваємо браузер
 
-
-        //це клас де проходить ініціалізація
     }
 
 }

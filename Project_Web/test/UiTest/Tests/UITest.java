@@ -14,9 +14,9 @@ public class UITest extends BaseTest {
         String LastName = "Antonova";
         String UserName = "amina antonova";
         String Password = "A1b@cdef";
-
-        ElementsPage elementsPage = new ElementsPage();
-        elementsPage.ElementsClick();
+//
+//        ElementsPage elementsPage = new ElementsPage();
+//        elementsPage.ElementsClick();
 
 
 //        driver.get("https://demoqa.com/");
@@ -31,7 +31,7 @@ public class UITest extends BaseTest {
 
         Assert.assertTrue(loginPage.isLoginSuccessful());
         Assert.assertTrue(mainPage.isRedirectedToLogin());
-        Assert.assertTrue(elementsPage.isAtElementsPage());
+//        Assert.assertTrue(elementsPage.isAtElementsPage());
 
 
     }

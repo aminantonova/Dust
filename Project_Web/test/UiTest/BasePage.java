@@ -33,6 +33,16 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element)).sendKeys(text);
     }
 
+    // Проверка видимости элемента
+    public boolean isVisible(WebElement element) {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            return element.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+
+    }
     //Принудительная прокрутка страницы к нужному элементу.
     public void scroll(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -44,6 +54,21 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 
+    }
+
+    // Поиск элемента по XPath с ожиданием
+    public WebElement findByXpath(String xpath) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+    }
+
+    // Очистка поля с ожиданием видимости
+    public void clear(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element)).clear();
+    }
+
+    // Получение текста с ожиданием видимости
+    public String getText(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element)).getText();
     }
 
     // Безопасный клик с обработкой исключений (если элемент перекрыт)
@@ -75,31 +100,6 @@ public class BasePage {
             // Якщо CAPTCHA не з'явилась або не знайдена — просто виводимо повідомлення
             System.out.println("CAPTCHA не знайдена або не відображена.");
         }
-    }
-
-    // Проверка видимости элемента
-    public boolean isVisible(WebElement element) {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(element));
-            return element.isDisplayed();
-        } catch (TimeoutException e) {
-            return false;
-        }
-
-    }
-    // Поиск элемента по XPath с ожиданием
-    public WebElement findByXpath(String xpath) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-    }
-
-    // Очистка поля с ожиданием видимости
-    public void clear(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element)).clear();
-    }
-
-    // Получение текста с ожиданием видимости
-    public String getText(WebElement element) {
-        return wait.until(ExpectedConditions.visibilityOf(element)).getText();
     }
 }
 

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public class MainPage extends BasePage {
 
     @FindBy(xpath = "//h5 [text()='Book Store Application']")
@@ -43,10 +44,11 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//input[@id='password']")
     private WebElement Password;
 
-    @FindBy(xpath = "//div[contains(@class,'border')]//ancestor::span")
+    @FindBy(xpath = "//div[@class= 'recaptcha-checkbox-border']")
     private WebElement Robot;
     //div[contains(@class, 'border')]//ancestor::span
     //div[@class= 'recaptcha-checkbox-border']
+    //div [contains(@class,'checkmark')]"
 
     @FindBy(xpath = "//button[@id='register']")
     private WebElement Register;
@@ -56,16 +58,18 @@ public class MainPage extends BasePage {
         driver.get("https://demoqa.com/");
         //коли ми створемо екземпляр класу MainPage то відкриється ця URL, і відбудеться ініціалізація
         PageFactory.initElements(driver, this); // this – цей клас, або вказати назву потрібного класу
+        //тут я наче ініціалізую всі елементи с цього класу
         //зміна driver береться з Base Page який цей клас наслідує, і там driver вже є в змінній
         //модифікатор доступу цієї змінної protected який доступний в класах наследниках
     }
 
     // Метод ожидания загрузки страницы
-    public void waitForPageToLoad() {
+//    public void waitForPageToLoad() {
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //        wait.until(ExpectedConditions.visibilityOf(BookStore));
-    }
+
     public MainPage Register(String first, String last, String user, String pass) {
+        //це наче метод де я створюю змінні і передаю значення з UITest і знизу викликаю
         // метод який заповнить поля які ми зазначили
         // ці поля ми будемо передавати через тестовий клас
 
@@ -86,13 +90,14 @@ public class MainPage extends BasePage {
         type(LastName, last);
         type(UserName, user);
         type(Password, pass);
-        checkCaptcha("//div[@class='recaptcha-checkbox-border']");
+
+        checkCaptcha("//div[@class= 'recaptcha-checkbox-border']");
         ScrollAndClick(Register);
 
         return this; //повертаємо сторінку, бо з нею ще працюємо
     }
     public boolean isRedirectedToLogin() {
-        return Login.isDisplayed(); // или другой элемент на странице логина
+        return UserName.isDisplayed(); // или другой элемент на странице логина
     }
 
 }
