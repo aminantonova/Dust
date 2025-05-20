@@ -9,6 +9,8 @@ public class MainTest extends BaseTest {
     public void checkRegister() {
 
         HomePage homePage = new HomePage(driver);
+        // створюємо екземпляр класу MainPage
+        //Ініціалізуємо HomePage, щоб використовувати його методи
         homePage.openBookStoreCategory();
 
         MainPage mainPage = new MainPage(driver);// створюємо екземпляр класу MainPage

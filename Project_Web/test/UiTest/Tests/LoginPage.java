@@ -30,14 +30,16 @@ public class LoginPage extends BasePage {
 //"//button[text()='Login']"
     @FindBy(xpath = "//label[@id='userName-value']")
     private WebElement loggedInUserName;
+
     @FindBy(xpath = "//button [text()='Log out']")
     private WebElement logOut;
+
 //    public boolean isListsOfElementsDisplayed() {
 //        return isDisplayed(listsOfElements);
 //    }
 
     public void enterLogin () {
-    safeClick(login);
+        scrollAndClick(login);
     }
 
     public void enterUserName(String UserName) {
@@ -51,23 +53,11 @@ public class LoginPage extends BasePage {
     public void clickLogin() {
         click(loginButton);
     }
-public void clickLogOut() {
+    public void clickLogOut() {
         click(logOut);
 }
     public boolean isLoginSuccessful() {
         return loginUserName.isDisplayed(); // или другой элемент на странице логина
     }
-
-    }
-
-
-
-
-
-
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("login")));
-
-
-
+}
 

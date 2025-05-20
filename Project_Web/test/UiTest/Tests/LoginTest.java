@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
         loginPage.enterPassword("A1b@cdef");
         loginPage.clickLogin();
         loginPage.clickLogOut();
-        Assert.assertTrue(loginPage.isLoginSuccessful());
 
+        Assert.assertTrue(loginPage.isLoginSuccessful());
     }
 }

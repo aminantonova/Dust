@@ -19,20 +19,10 @@ public class BasePage {
     public void click(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
-    public void safeClick(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-    }
-
-  //  проверяет есть ли елемент и ждет пока он станет видимым
-    public boolean isDisplayed (WebElement element) {
-        return wait.until(ExpectedConditions.visibilityOf(element)).isDisplayed();
-    }
 
     public void scrollAndClick(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-
     }
 
     // Поиск элемента по XPath с ожиданием
