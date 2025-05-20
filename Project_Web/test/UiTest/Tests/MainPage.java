@@ -1,106 +1,107 @@
 package UiTest.Tests;
 
 import UiTest.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 
 public class MainPage extends BasePage {
 
-    @FindBy(xpath = "//h5 [text()='Book Store Application']")
-    private WebElement BookStore;
+    //Page Factory будується на конструкторі (control+enter)>constructor>select none
+    public MainPage(WebDriver driver) { // ініціалізація елементів
+        super(driver); //вызов конструктора Webdriver родительского класса в BasePage
+        PageFactory.initElements(driver, this);
+        //зміна driver береться з Base Page який цей клас наслідує, і там driver вже є в змінній
+    }
+
+//    @FindBy(xpath = "//div[contains(@class,'pannel')]")
+//    private WebElement listsOfElements;
+
+//    @FindBy(xpath = "//h5[contains(text(),'Book')]/ancestor::div[contains(@class,'mt-4')]")
+//    private WebElement bookStore;
 
     @FindBy(xpath = "//span [text()='Login']")
-    private WebElement Login;
-    //"//li[@class='btn btn-light active']//span"
-
-    @FindBy (xpath = "//div [@class= 'text-right button']//button [text()='New User']")
-    private WebElement NewUser;
-
-//"//div[@class='mt-2 buttonWrap row']//button [text()='New User']"
-//"//button[@id='newUser']"
-//"//button [text()='New User']"
-
-    //анотація Find
-    @FindBy(xpath = "//input [@id='firstname']") //можно id та css
-    // дозволяє знайти саме елемент на сторінці: робити пошук саме тоді, коли ми будемо звертатися до цього елементу
-    private WebElement FirstName; //відбувається ініціалізація елементу FirstName тоді коли ми до нього звертаємось
-    // тоесть не нужно присваивать ему какие-то значения
+    private static WebElement login;
+//"//li[contains(@class,'active')]"
+    @FindBy(xpath = "//button[text()='New User']")
+    private WebElement newUser;
+//    "//div[contains(@class,'text-right')]//button [@id='newUser']"
+    //"//button[@id='newUser']"
+//    "//div [@class= 'text-right button']//button [text()='New User']"
+//button[text()='New User']
+    @FindBy(xpath = "//input[@id='firstname']")
+    private WebElement firstName;
 
     @FindBy(xpath = "//input[@id='lastname']")
-    private WebElement LastName;
+    private WebElement lastName;
 
-    @FindBy(xpath = "//input[@id='userName']")
-    private WebElement UserName;
+    @FindBy(xpath = "//div[@id='userName-wrapper']//input")
+    private WebElement userName;
+
+//"//div[contains(@class,'col-md-9')]//input[@id='userName']"
+//"//input[@id='userName']"
+//"//button[text()='New User']"
+//"//div[@id='userName-wrapper']//descendant::input"
 
     @FindBy(xpath = "//input[@id='password']")
-    private WebElement Password;
+    private WebElement password;
 
-    @FindBy(xpath = "//div[@class= 'recaptcha-checkbox-border']")
-    private WebElement Robot;
-    //div[contains(@class, 'border')]//ancestor::span
-    //div[@class= 'recaptcha-checkbox-border']
-    //div [contains(@class,'checkmark')]"
+    @FindBy(xpath = "//div[@class='recaptcha-checkbox-border']")
+    private WebElement captcha;
 
     @FindBy(xpath = "//button[@id='register']")
-    private WebElement Register;
+    private WebElement register;
 
-    //Page Factory зазвичай будується на конструкторі (control+enter)>constructor>select none
-    public MainPage() { // метод для ініціалізації всіх елементів через Page Factory
-        driver.get("https://demoqa.com/");
-        //коли ми створемо екземпляр класу MainPage то відкриється ця URL, і відбудеться ініціалізація
-        PageFactory.initElements(driver, this); // this – цей клас, або вказати назву потрібного класу
-        //тут я наче ініціалізую всі елементи с цього класу
-        //зміна driver береться з Base Page який цей клас наслідує, і там driver вже є в змінній
-        //модифікатор доступу цієї змінної protected який доступний в класах наследниках
+
+
+//    public boolean isListsOfElementsDisplayed() {
+//        return isDisplayed(listsOfElements);
+//    }
+
+//    public void enterBookStore() {
+//        click(bookStore);
+//    }
+
+    public void clickLogin() {
+        scrollAndClick(login);
     }
 
-    // Метод ожидания загрузки страницы
-//    public void waitForPageToLoad() {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.visibilityOf(BookStore));
-
-    public MainPage Register(String first, String last, String user, String pass) {
-        //це наче метод де я створюю змінні і передаю значення з UITest і знизу викликаю
-        // метод який заповнить поля які ми зазначили
-        // ці поля ми будемо передавати через тестовий клас
-
-        safeClick(BookStore);
-//        click(BookStore);
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", BookStore);
-//        //принудительное прокручивание к нужному элементу, так как его перекрывает реклама
-//        BookStore.click();
-
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Login);
-
-//        WebElement Login = findByXpath("//span [text()='Login']");
-
-//        ScrollAndClick(Login);
-        safeClick(Login);
-        safeClick(NewUser);
-        type(FirstName, first);
-        type(LastName, last);
-        type(UserName, user);
-        type(Password, pass);
-
-        checkCaptcha("//div[@class= 'recaptcha-checkbox-border']");
-        ScrollAndClick(Register);
-
-        return this; //повертаємо сторінку, бо з нею ще працюємо
+    public void clickNewUser() {
+        scrollAndClick(newUser);
     }
+
+    public void enterFirstName(String FirstName) {
+        firstName.sendKeys(FirstName);
+    }
+
+    public void enterLastName(String LastName) {
+        lastName.sendKeys(LastName);
+    }
+
+    public void enterUserName(String UserName) {
+        userName.sendKeys(UserName);
+    }
+
+    public void enterPassword(String Password) {
+        password.sendKeys(Password);
+    }
+
+//    public boolean isCaptchaDisplayed() {
+//        return captcha.isDisplayed();
+//    }
+
+    public void clickRegister() {
+        scrollAndClick(register);
+    }
+
     public boolean isRedirectedToLogin() {
-        return UserName.isDisplayed(); // или другой элемент на странице логина
+        return userName.isDisplayed();
     }
-
 }
 
 
-//        driver.findElement(By.xpath("//h5 [text()='Elements']")).click();
+
+
