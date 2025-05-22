@@ -10,7 +10,6 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    // Конструктор: инициализация WebDriverWait с универсальным таймаутом
     public BasePage (WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -25,7 +24,6 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
-    // Поиск элемента по XPath с ожиданием
     public WebElement findByXpath(String xpath) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
     }

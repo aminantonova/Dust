@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginTest extends BaseTest {
+
     @Test
     public void checkLogin() {
 
@@ -13,7 +14,6 @@ public class LoginTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
 
-//        loginPage.isListsOfElementsDisplayed();
         loginPage.enterLogin();
         loginPage.enterUserName("amina antonova");
         loginPage.enterPassword("A1b@cdef");

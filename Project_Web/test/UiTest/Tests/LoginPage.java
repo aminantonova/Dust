@@ -13,11 +13,8 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-//    @FindBy(xpath = "//div[contains(@class,'pannel')]")
-//    private WebElement listsOfElements;
-
-    @FindBy(xpath = "//span [text()='Login']")
-    private static WebElement login;
+    @FindBy(xpath = "//span[text()='Login']")
+    private WebElement login;
 
     @FindBy(xpath = "//input[@id='userName']")
     private WebElement loginUserName;
@@ -25,18 +22,14 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@id='password']")
     private WebElement password;
 
-    @FindBy(xpath = "//button[@id='login']")
+    @FindBy(xpath = "//button [text()='Login']")
     private WebElement loginButton;
-//"//button[text()='Login']"
+
     @FindBy(xpath = "//label[@id='userName-value']")
     private WebElement loggedInUserName;
 
-    @FindBy(xpath = "//button [text()='Log out']")
+    @FindBy(xpath = "//button[text()='Log out']")
     private WebElement logOut;
-
-//    public boolean isListsOfElementsDisplayed() {
-//        return isDisplayed(listsOfElements);
-//    }
 
     public void enterLogin () {
         scrollAndClick(login);
@@ -53,11 +46,13 @@ public class LoginPage extends BasePage {
     public void clickLogin() {
         click(loginButton);
     }
+
     public void clickLogOut() {
         click(logOut);
-}
+    }
+
     public boolean isLoginSuccessful() {
-        return loginUserName.isDisplayed(); // или другой элемент на странице логина
+        return loginUserName.isDisplayed();
     }
 }
 

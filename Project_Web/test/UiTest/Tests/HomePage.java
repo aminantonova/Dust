@@ -9,17 +9,9 @@ public class HomePage extends BasePage {
             super(driver);
         }
 
-//ElEMENTS
-
  public WebElement bookStoreCategory = findByXpath("//h5[contains(text(),'Book')]/ancestor::div[contains(@class,'mt-4')]");
-//        public WebElement loginElement = findByXpath("//span [text()='Login']");
-//METHOD
-
 
         public void openBookStoreCategory(){
             scrollAndClick(bookStoreCategory);
         }
-//        public void openLoginElement() {
-//            scrollAndClick(loginElement);
-//        }
     }
