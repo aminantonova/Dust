@@ -1,4 +1,4 @@
-package UiTest;
+package uiPages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,10 +22,6 @@ public class BasePage {
     public void scrollAndClick(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-    }
-
-    public WebElement findByXpath(String xpath) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
     }
 }
 

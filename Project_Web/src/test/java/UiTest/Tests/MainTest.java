@@ -1,27 +1,26 @@
 package UiTest.Tests;
 
-import UiTest.BaseTest;
+import com.example.selenium.UserName;
 import org.junit.Assert;
 import org.junit.Test;
+import uiPages.MainPage;
 
 public class MainTest extends BaseTest {
     @Test
     public void checkRegister() {
 
-        HomePage homePage = new HomePage(driver);
-        homePage.openBookStoreCategory();
-
         MainPage mainPage = new MainPage(driver);
+        UserName user = UserName.AMINA;
 
+        mainPage.clickBookStoreCategory();
         mainPage.clickLogin();
         mainPage.clickNewUser();
-        mainPage.enterFirstName("Amina");
-        mainPage.enterLastName("Antonova");
-        mainPage.enterUserName("amina antonova");
-        mainPage.enterPassword("A1b@cdef");
+        mainPage.enterFirstName(user.getFirstName());
+        mainPage.enterLastName(user.getLastName());
+        mainPage.enterUserName(user.getUserName());
+        mainPage.enterPassword(user.getPassword());
         mainPage.clickRegister();
 
         Assert.assertTrue(mainPage.isRedirectedToLogin());
-
     }
 }

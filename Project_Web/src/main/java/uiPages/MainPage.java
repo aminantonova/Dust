@@ -1,10 +1,10 @@
-package UiTest.Tests;
+package uiPages;
 
-import UiTest.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import com.example.selenium.UserName;
 
 public class MainPage extends BasePage {
 
@@ -12,6 +12,9 @@ public class MainPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
+    @FindBy (xpath = "//h5[contains(text(),'Book')]/ancestor::div[contains(@class,'mt-4')]")
+    private WebElement bookStoreCategory;
 
     @FindBy(xpath = "//span[text()='Login']")
     private WebElement login;
@@ -34,6 +37,9 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//button[@id='register']")
     private WebElement register;
 
+    public void clickBookStoreCategory() {
+        scrollAndClick(bookStoreCategory);
+    }
 
     public void clickLogin() {
         scrollAndClick(login);

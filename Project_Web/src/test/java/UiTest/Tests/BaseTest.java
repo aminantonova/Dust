@@ -1,4 +1,4 @@
-package UiTest;
+package UiTest.Tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -18,7 +18,7 @@ public class BaseTest {
     }
 
     @After
-            public void tearDown () {
+        public void tearDown () {
         driver.quit();
     }
 }

@@ -1,6 +1,5 @@
-package UiTest.Tests;
+package uiPages;
 
-import UiTest.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +11,9 @@ public class LoginPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
+    @FindBy (xpath = "//h5[contains(text(),'Book')]/ancestor::div[contains(@class,'mt-4')]")
+    private WebElement bookStoreCategory;
 
     @FindBy(xpath = "//span[text()='Login']")
     private WebElement login;
@@ -31,6 +33,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//button[text()='Log out']")
     private WebElement logOut;
 
+    public void clickBookStoreCategory () {
+        scrollAndClick(bookStoreCategory);
+    }
     public void enterLogin () {
         scrollAndClick(login);
     }
@@ -47,12 +52,8 @@ public class LoginPage extends BasePage {
         click(loginButton);
     }
 
-    public void clickLogOut() {
-        click(logOut);
-    }
-
-    public boolean isLoginSuccessful() {
-        return loginUserName.isDisplayed();
+    public boolean checkIsLoginSuccess() {
+        return loggedInUserName.isDisplayed();
     }
 }
 
