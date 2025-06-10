@@ -6,6 +6,10 @@ public class SuccessReg {
     public int id;
     public String token;
 
+    public SuccessReg() {
+        // обязателен для десериализации JSON
+    }
+
     public SuccessReg(int id, String token) {
         this.id = id;
         this.token = token;

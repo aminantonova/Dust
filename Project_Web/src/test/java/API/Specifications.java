@@ -50,5 +50,9 @@ public class Specifications {
     //в ReqresTest после public void checkAvatarAndIdTest(){ – по идее нужно дать доступ к классу Specifications
     //и дальше сократить
 }
-
+    public static ResponseSpecification responseSpecUnique(int status) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(status) //мы ожидаем определнный статус
+                .build();
+    }
 }

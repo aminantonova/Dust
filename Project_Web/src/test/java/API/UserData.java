@@ -6,7 +6,7 @@ public class UserData {
   public String first_name;
   public String last_name;
   public String avatar;
-
+//это мы закинули с data (на сайте) первый список и перевели его с json в java
   public UserData () {
   }
     public UserData(String avatar, String last_name, String first_name, String email, Integer id) {
