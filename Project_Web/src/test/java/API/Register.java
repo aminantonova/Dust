@@ -7,6 +7,5 @@ public class Register {
     public Register(String email, String password) {
         this.email = email;
         this.password = password;
-        //  геттеры не нужны потому что это post запрос
     }
 }
