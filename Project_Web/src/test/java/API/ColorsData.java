@@ -7,6 +7,9 @@ public class ColorsData {
     public String color;
     public String pantone_value;
 
+    public ColorsData() {
+    }
+
     public ColorsData(Integer id, String name, Integer year, String color, String pantone_value) {
         this.id = id;
         this.name = name;

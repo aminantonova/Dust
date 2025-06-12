@@ -39,6 +39,7 @@ public class ReqresTest {
         SuccessReg successReg = given()
                 .body(user)
                 .when()
+                .header("x-api-key", "reqres-free-v1")
                 .post("api/register")
                 .then().log().all()
                 .extract().as(SuccessReg.class);
@@ -55,7 +56,8 @@ public class ReqresTest {
          Register user = new Register("sydney@fife", "");
          UnSuccessReg unSuccessReg = given()
                 .body(user)
-                .post("api/register")
+                 .header("x-api-key", "reqres-free-v1")
+                 .post("api/register")
                 .then().log().all()
                 .extract().as(UnSuccessReg.class);
     Assert.assertEquals("Missing password", unSuccessReg.getError());
@@ -66,7 +68,8 @@ public class ReqresTest {
         Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecOK200());
          List<ColorsData> colors = given()
                 .when()
-                .get("api/unknown")
+                 .header("x-api-key", "reqres-free-v1")
+                 .get("api/unknown")
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", ColorsData.class);
 
@@ -83,6 +86,7 @@ public class ReqresTest {
     Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecUnique(204));
         given()
                 .when()
+                .header("x-api-key", "reqres-free-v1")
                 .delete("api/users/2")
                 .then().log().all();
     }
@@ -94,14 +98,16 @@ public class ReqresTest {
         UserTimeResponse response = given()
                 .body(user)
                 .when()
+                .header("x-api-key", "reqres-free-v1")
                 .put("api/users/2")
                 .then().log().all()
                 .extract().as(UserTimeResponse.class); //нужно извлечь в нас созданный класс
-        System.out.println();
-        String regex = "(.{5})$";
-        String currentTime = Clock.systemUTC().instant().toString().replaceAll(regex, "");
-        System.out.println(currentTime);
-        Assert.assertEquals(currentTime, response.getUpdatedAt().replaceAll(regex, ""));
-        System.out.println(response.getUpdatedAt().replaceAll(regex, ""));
+        String actualTime = response.getUpdatedAt().substring(0, 19);
+        String currentTime = Clock.systemUTC().instant().toString().substring(0, 19);
+
+        System.out.println("Expected time: " + currentTime);
+        System.out.println("Actual time:   " + actualTime);
+
+        Assert.assertEquals(currentTime, actualTime);
     }
 }
