@@ -44,7 +44,6 @@ public class ReqresTest {
                 .then().log().all()
                 .extract().as(SuccessReg.class);
 
-//            Assert.assertNotNull(successReg.getId()); //горит желтым
         Assert.assertNotNull(successReg.getToken());
         Assert.assertEquals(id, successReg.getId());
         Assert.assertEquals(token, successReg.getToken());
@@ -101,7 +100,7 @@ public class ReqresTest {
                 .header("x-api-key", "reqres-free-v1")
                 .put("api/users/2")
                 .then().log().all()
-                .extract().as(UserTimeResponse.class); //нужно извлечь в нас созданный класс
+                .extract().as(UserTimeResponse.class);
         String actualTime = response.getUpdatedAt().substring(0, 19);
         String currentTime = Clock.systemUTC().instant().toString().substring(0, 19);
 
